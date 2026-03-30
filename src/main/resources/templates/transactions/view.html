@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/header :: head('View Transaction')"></head>
+<body>
+<nav th:replace="layout/header :: navbar"></nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2><i class="bi bi-receipt"></i> View Transaction</h2>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Transaction Details</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 30%;">ID</th>
+                            <td th:text="${transaction.id}"></td>
+                        </tr>
+                        <tr>
+                            <th>Customer ID</th>
+                            <td th:text="${transaction.customerId}"></td>
+                        </tr>
+                        <tr>
+                            <th>Customer Name</th>
+                            <td th:text="${transaction.customerName}"></td>
+                        </tr>
+                        <tr>
+                            <th>Product ID</th>
+                            <td th:text="${transaction.productId}"></td>
+                        </tr>
+                        <tr>
+                            <th>Product Name</th>
+                            <td th:text="${transaction.productName}"></td>
+                        </tr>
+                        <tr>
+                            <th>Quantity</th>
+                            <td th:text="${transaction.quantity}"></td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td th:text="${#numbers.formatDecimal(transaction.price, 1, 2)}"></td>
+                        </tr>
+                        <tr>
+                            <th>Transaction Date</th>
+                            <td th:text="${transaction.transactionDate}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/transactions/edit/{id}(id=${transaction.id})}" class="btn btn-warning">
+                        <i class="bi bi-pencil"></i> Edit
+                    </a>
+                    <a th:href="@{/transactions}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/footer :: footer"></footer>
+<div th:replace="layout/footer :: scripts"></div>
+</body>
+</html>
